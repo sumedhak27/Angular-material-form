@@ -1,1 +1,59 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+    box-sizing: border-box;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2em;
+}
+
+h3 {
+    color: rgba(0, 0, 0, 0.5)
+}
+
+form {
+    padding:0 10px;
+    max-width: 600px;
+    margin-left: 50%;
+    transform: translate(-50%,0)
+}
+
+button {
+    display: block;
+    float: center;
+    margin-left: 50%;
+    transform: translate(-50%,0);
+    padding: 0.5em 2em;
+}
+
+.full-width {
+    width: 97%;
+}
+
+mat-checkbox {
+    display: block;
+    margin: 1em 0em;
+}
+
+mat-radio-button {
+    margin: 1em 1em 1em 0;
+}
+
+.success-message {
+    width: 100%;
+    max-width: 600px;
+    background: greenyellow;
+    color: black;
+    padding: 1em;
+    margin-left: 50%;
+    transform: translate(-50%,50%);
+    text-align: center;
+    font-size: 2em;
+    border-radius: 20px;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.342);
+}

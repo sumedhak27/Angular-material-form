@@ -1,0 +1,464 @@
+<!-- <ul *ngFor="let student of students | async">
+  <li>{{student.personalInfo.grNo}}</li>
+</ul> -->
+<form [formGroup]="myForm" [hidden]="success" class="full-width">
+  <!-- Value : {{ myForm.value | json }} -->
+  <div class="personal-info form-group" formGroupName="personalInfo">
+    <h2>PERSONAL INFORMATION</h2>
+    <mat-form-field class="full-width"
+      ><input
+        matInput
+        type="text"
+        placeholder="Firstname"
+        formControlName="firstName"
+      />
+      <mat-error *ngIf="firstName.errors?.pattern">
+        Numbers or special characters are not allowed.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width"
+      ><input
+        matInput
+        type="text"
+        placeholder="Middlename"
+        formControlName="middleName"
+      />
+      <mat-error *ngIf="middleName.errors?.pattern">
+        Numbers or special characters are not allowed.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width"
+      ><input
+        matInput
+        type="text"
+        placeholder="Lastname"
+        formControlName="lastName"
+      />
+      <mat-error *ngIf="lastName.errors?.pattern">
+        Numbers or special characters are not allowed.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width"
+      ><input
+        matInput
+        type="text"
+        placeholder="Gr no."
+        formControlName="grNo"
+        onkeyup="this.value = this.value.toUpperCase();"
+      />
+      <mat-error *ngIf="grNo.invalid && grNo.touched">
+        Your Gr. No does not match the pattern.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width"
+      ><input
+        matInput
+        type="number"
+        placeholder="Roll no.(Eg.223012)"
+        max="6"
+        min="6"
+        formControlName="rollNo"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>Academic Year</mat-label>
+      <mat-select formControlName="academicYear">
+        <mat-option value="FE">FY BTech</mat-option>
+        <mat-option value="SE">SY Btech</mat-option>
+        <mat-option value="TE">TY Btech</mat-option>
+        <mat-option value="BE">B.E</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width"
+      ><mat-label>Shift</mat-label>
+      <mat-select formControlName="shift">
+        <mat-option value="firstShift">First Shift</mat-option>
+        <mat-option value="secondShift">Second Shift</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="full-width"
+      ><mat-label>Branch</mat-label>
+      <mat-select formControlName="branch">
+        <mat-option value="COMPUTER">Computer Science</mat-option>
+        <mat-option value="ENTC">Electronics And Telecommunication</mat-option>
+        <mat-option value="CIVIL">Civil Engineering</mat-option>
+        <mat-option value="MECHNICAL">Mechanical Engineering</mat-option>
+        <mat-option value="IT">Information Technology</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width"
+      ><mat-label>Batch</mat-label>
+      <mat-select formControlName="batch">
+        <mat-option value="A1">A1</mat-option>
+        <mat-option value="A2">A2</mat-option>
+        <mat-option value="A3">A3</mat-option>
+        <mat-option value="B1">B1</mat-option>
+        <mat-option value="B2">B2</mat-option>
+        <mat-option value="B3">B3</mat-option>
+        <mat-option value="C1">C1</mat-option>
+        <mat-option value="C2">C2</mat-option>
+        <mat-option value="C3">C3</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="Birthdate"
+        formControlName="birthDate"
+      />
+      <!-- <input matInput matInput [matDatepicker]="picker" placeholder="Choose a date" /> -->
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="full-width"
+      ><input
+        matInput
+        placeholder="Mobile number"
+        type="tel"
+        formControlName="mobile"
+      />
+      <mat-error *ngIf="personalMobile.errors?.pattern">
+        Wrong Mobile Number. Please Enter again.
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width"
+      ><input
+        matInput
+        placeholder="Email Address"
+        type="email"
+        formControlName="email"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width"
+      ><input
+        matInput
+        type="text"
+        placeholder="Caste"
+        formControlName="caste"
+      />
+    </mat-form-field>
+    <!-- <button mat-flat-button color="primary">Next</button> -->
+  </div>
+  <div class="family-info form-group">
+    <h2>FAMILY DETAILS</h2>
+    <div class="father-details" formGroupName="father">
+      <h3>FATHER DETAILS</h3>
+      <mat-form-field class="full-width">
+        <input matInput type="text" placeholder="Name" formControlName="name"
+      /></mat-form-field>
+
+      <mat-form-field class="full-width"
+        ><input
+          matInput
+          type="text"
+          placeholder="Profession"
+          formControlName="profession"
+      /></mat-form-field>
+      <mat-form-field class="full-width"
+        ><input
+          matInput
+          type="text"
+          placeholder="Designation"
+          formControlName="designation"
+      /></mat-form-field>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          type="tel"
+          maxlength="10"
+          placeholder="Mobile Number"
+          formControlName="mobileNo"
+        />
+        <mat-error *ngIf="fatherMobile.errors?.pattern">
+          Wrong Mobile Number. Please Enter again.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width"
+        ><input
+          matInput
+          type="email"
+          placeholder="Email"
+          formControlName="email"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+      /></mat-form-field>
+    </div>
+    <div class="mother-details" formGroupName="mother">
+      <h3>MOTHER DETAILS</h3>
+      <mat-form-field class="full-width">
+        <input matInput type="text" placeholder="Name" formControlName="name" />
+      </mat-form-field>
+      <mat-form-field class="full-width"
+        ><input
+          matInput
+          type="text"
+          placeholder="Profession"
+          formControlName="profession"
+      /></mat-form-field>
+      <mat-form-field class="full-width"
+        ><input
+          matInput
+          type="text"
+          placeholder="Designation"
+          formControlName="designation"
+      /></mat-form-field>
+      <mat-form-field class="full-width"
+        ><input
+          matInput
+          type="tel"
+          maxlength="10"
+          placeholder="Mobile
+        Number"
+          formControlName="mobileNo"
+        />
+        <mat-error *ngIf="motherMobile.errors?.pattern">
+          Wrong Mobile Number. Please Enter again.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width"
+        ><input
+          matInput
+          type="email"
+          pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+          placeholder="Email"
+          formControlName="email"
+      /></mat-form-field>
+    </div>
+  </div>
+  <div class="postal-address form-group">
+    <h2>POSTAL ADDRESS</h2>
+    <div class="permanat-address" formGroupName="permanantAddress">
+      <h3>PERMANENT ADDRESS</h3>
+      <mat-form-field class="full-width">
+        <textarea
+          matInput
+          placeholder="Address"
+          formControlName="address"
+        ></textarea>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          type="text"
+          placeholder="State"
+          formControlName="state"
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput type="text" placeholder="City" formControlName="city" />
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          type="number"
+          placeholder="Pin Code"
+          formControlName="pinCode"
+        />
+      </mat-form-field>
+      <mat-radio-group aria-label="Select an option" formControlName="area">
+        <mat-radio-button value="Urban">Urban</mat-radio-button>
+        <mat-radio-button value="Rural">Rural</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-checkbox (change)="duplicateAddressClicked($event)"
+        >Current Address is same as permanent address.</mat-checkbox
+      >
+    </div>
+    <div class="current-address" formGroupName="currentAddress">
+      <h3>CURRENT ADDRESS</h3>
+      <mat-form-field class="full-width">
+        <textarea
+          matInput
+          placeholder="Address"
+          formControlName="address"
+        ></textarea>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="State" formControlName="state" />
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          type="text"
+          id="currCity"
+          placeholder="City"
+          formControlName="city"
+        />
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input
+          matInput
+          type="number"
+          placeholder="Pin Code"
+          formControlName="pinCode"
+        />
+      </mat-form-field>
+      <mat-radio-group aria-label="Select an option" formControlName="area">
+        <mat-radio-button value="Urban">Urban</mat-radio-button>
+        <mat-radio-button value="Rural">Rural</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+  <div class="academic-info form-group" formGroupName="academicDetails">
+    <h2>ACADEMIC DETAILS</h2>
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        type="number"
+        max="100"
+        min="0"
+        step="0.01"
+        placeholder="10th Percentage"
+        formControlName="10th Marks"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        type="number"
+        max="100"
+        min="0"
+        step="0.01"
+        placeholder="12th Percentage"
+        formControlName="12th Marks"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        type="number"
+        min="0"
+        max="10"
+        step="0.01"
+        placeholder="F.Y. CGPA"
+        formControlName="fycgpa"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        type="number"
+        min="0"
+        max="10"
+        step="0.01"
+        placeholder="S.Y. CGPA"
+        formControlName="sycgpa"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        type="number"
+        min="0"
+        max="10"
+        step="0.01"
+        placeholder="T.Y. CGPA"
+        formControlName="tycgpa"
+      />
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <input
+        matInput
+        type="number"
+        min="0"
+        max="10"
+        step="0.01"
+        placeholder="B.E CGPA"
+        formControlName="becgpa"
+      />
+    </mat-form-field>
+  </div>
+  <div class="skills form-group" formArrayName="skills">
+    <h2>Skills</h2>
+    <button
+      class="full-width"
+      mat-raised-button
+      color="primary"
+      (click)="addSkill()"
+    >
+      Add New Skill
+    </button>
+    <div
+      *ngFor="let skill of skillsArray.controls; let i = index"
+      [formGroupName]="i"
+    >
+      <mat-form-field
+        style="position:relative"
+        class="full-width"
+        style="margin: 1em 0 0 0 "
+      >
+        <input matInput placeholder=" skill" formControlName="title" />
+        <button
+          style="position: absolute; right: 0;bottom: 10%"
+          mat-raised-button
+          color="warn"
+          (click)="deleteSkill(i)"
+        >
+          Delete
+        </button>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="internships form-group" formArrayName="internships">
+    <h2>Internships</h2>
+    <button
+      class="full-width"
+      mat-raised-button
+      color="primary"
+      (click)="addInternship()"
+    >
+      Add New Internship
+    </button>
+    <div
+      *ngFor="let internship of IntershipsArray.controls; let i = index"
+      [formGroupName]="i"
+    >
+      <mat-form-field
+        style="position:relative"
+        class="full-width"
+        style="margin: 1em 0 0 0 "
+      >
+        <input
+          matInput
+          placeholder="Company Name"
+          formControlName="companyName"
+        />
+      </mat-form-field>
+      <mat-form-field
+        style="position:relative"
+        class="full-width"
+        style="margin: 1em 0 0 0 "
+      >
+        <textarea
+          matInput
+          placeholder="Description"
+          formControlName="description"
+        ></textarea>
+      </mat-form-field>
+      <button
+        class="full-width"
+        mat-raised-button
+        color="warn"
+        (click)="deleteInternship(i)"
+      >
+        Delete
+      </button>
+    </div>
+  </div>
+  <button
+    mat-raised-button
+    [disabled]="myForm.invalid"
+    color="primary"
+    (click)="submitForm()"
+    style="margin: 3em 0 ;"
+    class="full-width"
+  >
+    Submit
+  </button>
+</form>
+<div *ngIf="success" class="success-message">
+  <p>Yay ! We Received your Submission <span>✌</span></p>
+</div>
